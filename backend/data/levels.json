@@ -4,6 +4,7 @@
       "id": 1,
       "name": "苍穹神龙",
       "creatureName": "苍龙",
+      "difficulty": 1,
       "creatureDescription": "传说中盘亘于银河之上的神龙，掌管星辰运转。它的鳞片由流星铸就，每一次呼吸都会掀起宇宙的潮汐。当你连接它的星脉，便能听见远古星界的吟唱。",
       "anchorPoints": [
         { "id": "a1", "x": 0.15, "y": 0.75, "frequency": 1.0, "name": "龙角", "baseBrightness": 0.8, "size": 3.5 },
@@ -41,6 +42,7 @@
       "id": 2,
       "name": "涅槃凤凰",
       "creatureName": "朱雀",
+      "difficulty": 2,
       "creatureDescription": "浴火重生的南方神兽朱雀，羽翼展开如烈焰燃烧。它的每一根羽毛都是一颗超新星，涅槃之际照亮整个星域。连接它的星脉，感受不死不灭的炽热之力。",
       "anchorPoints": [
         { "id": "b1", "x": 0.50, "y": 0.20, "frequency": 1.2, "name": "凤冠", "baseBrightness": 0.95, "size": 4.2 },
@@ -84,6 +86,7 @@
       "id": 3,
       "name": "祥瑞麒麟",
       "creatureName": "麒麟",
+      "difficulty": 3,
       "creatureDescription": "踏云而来的祥瑞之兽麒麟，鹿角狮尾、龙鳞虎背。它所到之处星河璀璨，万星朝拜。连接它的星脉，便能获得来自星界最深沉的祝福与智慧。",
       "anchorPoints": [
         { "id": "c1", "x": 0.35, "y": 0.25, "frequency": 1.5, "name": "左鹿角", "baseBrightness": 0.88, "size": 3.9 },

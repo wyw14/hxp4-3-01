@@ -18,6 +18,7 @@ export interface LevelData {
   id: number;
   name: string;
   creatureName: string;
+  difficulty: number;
   creatureDescription: string;
   anchorPoints: AnchorPoint[];
   edges: ConstellationEdge[];
@@ -27,6 +28,15 @@ export interface LevelData {
     speed: number;
   };
   rotationSpeed: number;
+}
+
+export interface LevelSummary {
+  id: number;
+  name: string;
+  creatureName: string;
+  difficulty: number;
+  starPointCount: number;
+  starPulseCount: number;
 }
 
 export interface BackgroundStar {

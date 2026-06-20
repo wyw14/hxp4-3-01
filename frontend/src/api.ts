@@ -1,13 +1,13 @@
-import type { LevelData, VerifyResult } from './types';
+import type { LevelData, LevelSummary, VerifyResult } from './types';
 
 const API_BASE = '/api';
 
-export async function getLevelList(): Promise<{ id: number; name: string; creatureName: string }[]> {
+export async function getLevelList(): Promise<LevelSummary[]> {
   try {
     const res = await fetch(`${API_BASE}/levels`);
     const data = await res.json();
     if (data.success) {
-      return data.levels;
+      return data.levels as LevelSummary[];
     }
     return [];
   } catch {

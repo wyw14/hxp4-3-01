@@ -30,6 +30,9 @@
         pointer-events: none;
         color: #fff;
       }
+      #ui-layer.hidden {
+        display: none;
+      }
       .hud {
         position: absolute;
         padding: 16px 24px;
@@ -91,6 +94,12 @@
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
       }
+      .btn-secondary {
+        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+      }
+      .btn-secondary:hover {
+        box-shadow: 0 6px 20px rgba(45, 55, 72, 0.4);
+      }
       #complete-modal {
         position: absolute;
         top: 50%;
@@ -126,11 +135,306 @@
         transform: translateX(-50%);
         pointer-events: auto;
       }
+      #btn-back {
+        position: absolute;
+        top: 20px;
+        right: 220px;
+        pointer-events: auto;
+      }
+
+      /* ========== 星图大厅 ========== */
+      #star-map-hall {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at center, #0a0a2e 0%, #000010 50%, #000 100%);
+        overflow-y: auto;
+        z-index: 100;
+      }
+      #star-map-hall.hidden {
+        display: none;
+      }
+      .hall-stars-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .hall-star {
+        position: absolute;
+        background: #fff;
+        border-radius: 50%;
+        animation: twinkle 3s infinite ease-in-out;
+      }
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.2); }
+      }
+      .hall-content {
+        position: relative;
+        z-index: 1;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .hall-title {
+        text-align: center;
+        margin-bottom: 12px;
+      }
+      .hall-title h1 {
+        font-size: 48px;
+        background: linear-gradient(135deg, #a0c4ff 0%, #ffd700 50%, #ff6b9d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 60px rgba(160, 196, 255, 0.3);
+        letter-spacing: 8px;
+      }
+      .hall-subtitle {
+        text-align: center;
+        color: #a0c4ff;
+        font-size: 16px;
+        margin-bottom: 50px;
+        opacity: 0.8;
+        letter-spacing: 4px;
+      }
+      .star-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        padding: 10px;
+      }
+      .star-card {
+        position: relative;
+        background: rgba(10, 15, 40, 0.8);
+        border: 2px solid rgba(100, 150, 255, 0.2);
+        border-radius: 20px;
+        padding: 30px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+      .star-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.4s;
+        pointer-events: none;
+      }
+      .star-card:hover {
+        border-color: rgba(160, 196, 255, 0.6);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3),
+                    0 0 40px rgba(160, 196, 255, 0.2) inset;
+      }
+      .star-card:hover::before {
+        opacity: 1;
+      }
+      .star-card.locked {
+        cursor: not-allowed;
+        opacity: 0.5;
+        filter: grayscale(0.6);
+      }
+      .star-card.locked:hover {
+        transform: none;
+        border-color: rgba(100, 150, 255, 0.2);
+        box-shadow: none;
+      }
+      .star-card.completed {
+        border-color: rgba(255, 215, 0, 0.5);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.15) inset;
+      }
+      .star-card.completed::after {
+        content: '✓';
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #ffd700, #ff8c00);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: #1a1a2e;
+        font-weight: bold;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+      }
+      .card-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+        border: 2px solid rgba(160, 196, 255, 0.4);
+        position: relative;
+      }
+      .card-icon::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 50%;
+        border: 1px dashed rgba(160, 196, 255, 0.3);
+        animation: rotate 20s linear infinite;
+      }
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .star-card.completed .card-icon {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.3));
+        border-color: rgba(255, 215, 0, 0.5);
+      }
+      .card-level-id {
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        font-size: 14px;
+        color: #667eea;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+      .card-title {
+        text-align: center;
+        font-size: 24px;
+        color: #fff;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+      .card-creature {
+        text-align: center;
+        font-size: 16px;
+        color: #a0c4ff;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+      }
+      .card-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .stat-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        text-align: center;
+      }
+      .stat-label {
+        font-size: 11px;
+        color: #888;
+        margin-bottom: 4px;
+        letter-spacing: 1px;
+      }
+      .stat-value {
+        font-size: 18px;
+        color: #fff;
+        font-weight: bold;
+      }
+      .stat-value.star {
+        color: #ffd700;
+      }
+      .stat-value.pulse {
+        color: #667eea;
+      }
+      .difficulty-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 20px;
+      }
+      .difficulty-label {
+        font-size: 12px;
+        color: #888;
+        margin-right: 8px;
+        letter-spacing: 1px;
+      }
+      .difficulty-star {
+        font-size: 16px;
+        color: #333;
+        transition: color 0.3s;
+      }
+      .difficulty-star.active {
+        color: #ff6b9d;
+        text-shadow: 0 0 10px rgba(255, 107, 157, 0.6);
+      }
+      .card-action {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+        letter-spacing: 4px;
+      }
+      .star-card:hover .card-action {
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        transform: scale(1.02);
+      }
+      .star-card.locked .card-action {
+        background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+      }
+      .locked-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60px;
+        opacity: 0.6;
+        pointer-events: none;
+      }
+      .hall-footer {
+        text-align: center;
+        margin-top: 50px;
+        color: #555;
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
     </style>
   </head>
   <body>
+    <!-- 星图大厅 -->
+    <div id="star-map-hall">
+      <div class="hall-stars-bg" id="hall-stars-bg"></div>
+      <div class="hall-content">
+        <div class="hall-title">
+          <h1>星 图 大 厅</h1>
+        </div>
+        <div class="hall-subtitle">— 选 择 星 图  ·  点 亮 神 话 —</div>
+        <div class="star-cards-container" id="star-cards-container">
+        </div>
+        <div class="hall-footer">点亮全部星图，召唤远古神话生物</div>
+      </div>
+    </div>
+
     <canvas id="gameCanvas"></canvas>
     <div id="ui-layer">
+      <button class="btn btn-secondary" id="btn-back">← 返回星图</button>
       <div class="hud" id="level-info">
         <div>第 <span id="level-num">1</span> 关</div>
         <div style="margin-top: 6px; color: #a0c4ff;">神话生物: <span id="creature-name">未知</span></div>

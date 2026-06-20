@@ -73,7 +73,10 @@ app.get('/api/levels', (_req, res) => {
     levels: data.levels.map((l: LevelData) => ({
       id: l.id,
       name: l.name,
-      creatureName: l.creatureName
+      creatureName: l.creatureName,
+      difficulty: l.difficulty,
+      starPointCount: l.anchorPoints.length,
+      starPulseCount: l.edges.length
     }))
   });
 });

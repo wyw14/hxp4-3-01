@@ -18,6 +18,7 @@ export interface LevelData {
   id: number;
   name: string;
   creatureName: string;
+  difficulty: number;
   creatureDescription: string;
   anchorPoints: AnchorPoint[];
   edges: ConstellationEdge[];
